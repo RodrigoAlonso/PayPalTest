@@ -1,9 +1,9 @@
-package paypal.test;
+package paypal.challenge;
 
 import java.io.PrintStream;
 import java.util.List;
 
-public class QuadrupletsTest {
+public class QuadrupletsChallenge {
 
     static PrintStream ps = System.out;
 
@@ -12,13 +12,18 @@ public class QuadrupletsTest {
         for (int i = 0; i < result.size(); i++) {
 
             Quadruplet quadruplet = result.get(i);
-            ps.printf("% 10d - % 2d % 2d % 2d % 2d ", i+1, quadruplet.i, quadruplet.j, quadruplet.j, quadruplet.l);
+            ps.printf("% 10d - % 2d % 2d % 2d % 2d ", i+1, quadruplet.i, quadruplet.j, quadruplet.k, quadruplet.l);
             if (quadruplet.match) {
                 ps.println(" MATCH");
             } else {
                 ps.println();
             }
         }
+    }
+
+    static long countMatches(List<Quadruplet> result) {
+
+        return result.stream().filter(q->q.match==true).count();
     }
 
     public static void main(String args[])
@@ -29,9 +34,10 @@ public class QuadrupletsTest {
 
         List<Quadruplet> result;
 
-        ps.println("1st ----------------------------");
-        printResult(new NaiveRecursive().findQuadruplets(inputArray, sumTotal));
-        ps.println("2nd ----------------------------");
+        result = new NaiveRecursive().findQuadruplets(inputArray, sumTotal);
+        ps.printf("1st ---------------------------- %d\n", countMatches(result));
+        printResult(result);
+        ps.printf("2nd ---------------------------- %d\n", countMatches(result));
         printResult(new NaiveUnrolled().findQuadruplets(inputArray, sumTotal));
     }
 }
