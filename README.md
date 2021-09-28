@@ -1,6 +1,6 @@
 # PayPal Challenge
 
-Challenge: given an array of integers and a target sum, find quadruplets whose sum equals the sum.
+Challenge: given an array of integers and a target sum, find quadruplets whose sum equals the target sum.
 
 Example:
 
